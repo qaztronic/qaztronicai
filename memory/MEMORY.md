@@ -1,1 +1,2 @@
 - [Repo structure](repo_structure.md) — memory is a symlink into this repo, wip/ is gitignored intake, skills/hooks live in .claude/
+- [Use planning skills](use_planning_skills.md) — always invoke goal-planner (and its 5 sub-skills) for any plan, not just on exact trigger phrases
