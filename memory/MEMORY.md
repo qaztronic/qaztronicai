@@ -1,0 +1,1 @@
+- [Repo structure](repo_structure.md) — memory is a symlink into this repo, wip/ is gitignored intake, skills/hooks live in .claude/
