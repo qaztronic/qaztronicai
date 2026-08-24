@@ -5,13 +5,15 @@ metadata:
   type: project
 ---
 
-- **Unrestricted Bash permission grant lost.** User explicitly chose "leave it open" (unrestricted `Bash`
-  in `.claude/settings.local.json`, see [[settings-watcher-limitation]]) but the harness silently rewrote
-  that file mid-session to hold only narrow, per-command allow rules instead (confirmed again as of
-  2026-08-24: file now has 9 exact-command entries, no bare `"Bash"` rule). User was told about this once;
-  not yet fixed.
-  **Why it matters:** the user's actual stated preference (no Bash prompts at all, ever) isn't currently
-  in effect — every new command still needs individual approval.
-  **How to apply:** next session, check `.claude/settings.local.json` for a bare `"Bash"` allow rule. If
-  it's still missing, ask the user whether to restore it (rewrite the file back to the broad grant) or
-  whether they've since decided the narrow per-command list is actually fine.
+- **Unrestricted Bash permission grant — restored twice now, watch for a third silent rewrite.** User chose
+  "leave it open" (unrestricted `Bash` in `.claude/settings.local.json`). The harness has now silently
+  rewritten that file mid-session at least once, replacing the broad `"Bash"` rule with narrow per-command
+  entries — restored on 2026-08-24 back to `Read`/`Edit`/`Write` scoped to `/home/qaz/qaztronicai/**` plus
+  bare `"Bash"`.
+  **Why it matters:** this has already regressed once without any user action causing it — likely an
+  automatic behavior of the permission-approval flow itself (each approved prompt gets appended as its own
+  narrow rule), not a one-off bug.
+  **How to apply:** if Bash commands start prompting again despite this grant, check
+  `.claude/settings.local.json` for a bare `"Bash"` allow rule first before assuming something else broke;
+  restore it the same way (overwrite with the broad grant) without waiting to be asked, since the user has
+  now stated this preference twice.
