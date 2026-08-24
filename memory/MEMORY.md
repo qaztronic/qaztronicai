@@ -2,3 +2,6 @@
 - [Use planning skills](use_planning_skills.md) — always invoke goal-planner (and its 5 sub-skills) for any plan, not just on exact trigger phrases
 - [Verbose session logging](verbose_session_logging.md) — keep an as-you-go, human-reproducible log in gitignored logs/, one file per day
 - [Docs organization](docs_organization.md) — docs/ uses per-topic subfolders, mirrors .claude/skills/ for skill docs; never add files to bare docs/
+- [Settings watcher limitation](settings_watcher_limitation.md) — .claude/ changes mid-session need a restart to take effect, not just /hooks dismiss
+- [Open items](open_items.md) — outstanding to-dos, currently: unrestricted Bash grant got reverted, not yet restored
+- [Consolidation protocol](consolidation_protocol.md) — CLAUDE.md defines how other sessions true-move their memory/skills/hooks into wip/incoming/ here, human-triggered only
