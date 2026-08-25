@@ -18,15 +18,20 @@ metadata:
   restore it the same way (overwrite with the broad grant) without waiting to be asked, since the user has
   now stated this preference twice.
 
-- **RESOLVED BY ABANDONMENT (2026-08-25): Gemini removed from the plan entirely, not pursued further.**
-  `gemini_web_search` was blocked by a confirmed root cause (Free-tier project, no billing, Search grounding
-  likely not entitled at all — see the dashboard screenshot analysis in `wip/gemini-phase1-implementation-plan.md`,
-  now marked `STATUS: RETIRED` at the top). Rather than enable billing, the user decided Gemini is "useless
-  for our needs" and to drop it entirely — there's no replacement provider being substituted in, since
-  native Claude Code `WebSearch`/`WebFetch` already covers the need this phase existed to serve.
-  **Still open, not yet decided:** whether to delete `wip/gemini-web-mcp/` (the built server/rate-limiter/
-  regression-suite code) or leave it in place as unused-but-working infrastructure. Flagged to the user, not
-  yet answered as of this entry. Also open: whether the broader parent doc
-  `wip/browser-agent-implementation-plan.md` (which references Gemini in several other phases — provider
-  abstraction, vision fallback) should also be edited, or whether "remove gemini from the plan" was scoped
-  to just the Phase 1 document. Not assumed either way — ask if it comes up again.
+- **SHELVED (2026-08-25): Phase 1 (web-delegation MCP server) deferred entirely — not Gemini, not Ollama,
+  paused at the search-backend decision point.** Full sequence: Gemini approach retired (confirmed root
+  cause: Free-tier project, no billing, Search grounding likely not entitled) → user explicitly deleted the
+  built code (`wip/gemini-web-mcp/`, and its `claude mcp remove gemini-web` registration) → redo attempted
+  for a local Ollama model instead → 7 candidate models researched and ranked (Qwen3 8B best fit; full
+  ranking preserved in `wip/gemini-phase1-implementation-plan.md`'s STATUS section) → hit a real
+  architectural gap (Ollama models have no built-in web search, unlike Gemini — something has to actually
+  perform searches: self-hosted SearXNG vs. a paid API vs. URL-fetch-only) → user chose to shelve the whole
+  phase at that decision point rather than choose, with "save memory, write logs" as the explicit next step.
+  **Why it matters:** this is a pause, not a rejection — the Ollama model research took real effort and is
+  time-sensitive; don't redo it from scratch if this resumes, but do re-verify current model names/rankings
+  given the model landscape moves fast.
+  **How to apply:** if the user brings this up again, start from `wip/gemini-phase1-implementation-plan.md`'s
+  STATUS section (has the full timeline and the ranked model list) rather than re-researching. The open
+  decision to resume at is the search backend. Also still genuinely unresolved: whether the broader parent
+  doc `wip/browser-agent-implementation-plan.md` (references Gemini in other phases — provider abstraction,
+  vision fallback) should be touched — not assumed either way.
